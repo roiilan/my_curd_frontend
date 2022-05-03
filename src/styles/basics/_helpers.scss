@@ -1,0 +1,128 @@
+
+.site-block {
+    margin-bottom: rem(20px);
+}
+
+
+.strong {
+    font-weight: bolder;
+}
+
+
+
+// FLEX
+
+.flex {
+    display: flex;
+}
+
+.f-d-column {
+    flex-direction: column;
+}
+
+.f-d-row {
+    flex-direction: row;
+}
+
+.j-c-space-between{
+    justify-content: space-between;
+}
+
+.j-c-space-around{
+    justify-content: space-around;
+}
+
+.j-c-center {
+    justify-content: center;
+}
+
+.j-c-flex-end {
+    justify-content: flex-end;
+}
+
+.a-i-flex-end {
+    align-items: flex-end;
+}
+
+.a-i-center {
+    align-items: center;
+}
+
+// CURSOR
+
+.pointer {
+    cursor: pointer;
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+.cursor-initial {
+    cursor: initial;
+}
+
+// POSITIONS
+
+.relative {
+    position: relative;
+}
+.fixed {
+    position: fixed;
+}
+.absolute {
+    position: absolute;
+}
+.static {
+    position: static;
+}
+.sticky {
+    position: sticky;
+}
+
+// Aspect ratios
+
+.ratio-16-9 { @include aspect-ratio(100, 56); }
+
+.ratio-square { @include aspect-ratio(100, 100); }
+
+.ratio-card { @include aspect-ratio(100, 80); }
+
+.ratio-poster { @include aspect-ratio(100, 150); }
+
+
+
+
+// .h1-l {@include h1-l;}
+// .h1-s {@include h1-s;}
+// .h2 {@include h2;}
+// .h3 {@include h3;}
+// .p1 {@include p1;}
+// .p2 {@include p2;}
+// .my-btn {
+//     @include my-btn;
+//     &.btn1 {@include btn1;};
+//     &.btn2 {@include btn2;};
+//     &.btn3 {@include btn3;};
+// }
+// .my-form { @include my-form; }
+// .my-textarea { @include my-textarea; }
+
+
+
+
+// @media (prefers-reduced-motion: no-preference) {
+//     .avatar {
+//         &:hover{
+//             animation: avatar infinite 0.6s linear;
+//         }
+//     }
+//   }
+// @keyframes avatar {
+//     from {
+//       transform: rotateZ(-5deg);
+//     }
+//     to {
+//       transform: rotateZ(5deg);
+//     }
+//   }

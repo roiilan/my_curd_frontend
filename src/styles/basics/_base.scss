@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+*::selection {
+    background-color: lighten($clr4, 15%);
+    color: lighten($clr1, 25%);
+}
+
+html {
+    scroll-behavior: smooth;
+    // font-size: $html-font-size;
+    color: $clr1;
+    padding: 10px;
+    font-family: OpenSans, sans-serif;
+    // line-height: 1.9;
+}
+
+body {
+    margin: 0;
+    background-color: lighten($clr2, 20%);   
+}
+
+
+h1,
+ {
+    font-family: secondFont;
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+
+textarea {
+    resize: none;
+}
+
+button,
+select {
+    cursor: pointer;
+}
+
+
+
