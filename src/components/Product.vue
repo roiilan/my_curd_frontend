@@ -2,10 +2,43 @@
   <div class="product-container">
         <div v-if="loaded">	   
             <div class="card">
-                <div class="card_filed"> <h3>ID:</h3> <p>{{productId}}</p> </div>
-                <div class="card_filed"> <h3>Product Name: </h3> <p> {{productName}} </p></div>
-                <div class="card_filed"> <h3>Product Price:</h3> <p> ${{productPrice}} </p> </div>
-                <!-- <router-link :to="'/'" class="btn btn-primary"> Back </router-link> -->
+
+                <div class="card_filed">
+                   <h3> Product ID: </h3>
+                    <input
+                      v-if="isEdit"
+                      v-model="editProduct.productId"
+                      type="text"
+                      required
+                    />
+                    <p v-else> {{productId}} </p>
+
+                </div>
+
+                <div class="card_filed">
+                   <h3> Product Name: </h3>
+                    <input
+                      v-if="isEdit"
+                      v-model="editProduct.productName"
+                      type="text"
+                      required
+                    />
+                    <p v-else> {{productName}} </p>
+
+                </div>
+
+                <div class="card_filed">
+                   <h3> Product Price: </h3> 
+                    <input
+                      v-if="isEdit"
+                      v-model="editProduct.productPrice"
+                      type="text"
+                      required
+                    />
+                    <p v-else> ${{productPrice}} </p>
+
+                </div>
+
             </div>
         </div>
 
@@ -18,13 +51,26 @@
 <script>
 export default {
   name: 'Product',
+  props: {
+    isEdit: Boolean
+  },
   data () {
     return {
     	productId:'26256226',
     	productName: 'car',
     	productPrice: '15',
       productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
-    	loaded: true,
+    	
+      loaded: true,
+      // isEdit: false,
+
+      editProduct: {
+        productId:'',
+        productName: '',
+        productPrice: '',
+        productDescription:'',
+      },
+
     }    
   },
 }

@@ -1,0 +1,28 @@
+ 
+ $border_size : 3px;
+
+.product-content {
+  background-color: $clr2;
+  padding: 10px 5px;
+  border-top: $border_size  solid $clr3;
+  border-right: $border_size  solid $clr3;
+  border-left: $border_size  solid $clr3;
+  display: flex;
+  cursor: pointer;
+  }
+
+.product-content:last-child {
+  border-bottom: $border_size solid $clr3;
+}
+
+h3 {
+  font-size: 1em;
+  margin: 0;
+}
+
+.open-btn {
+  border-radius: 25px;
+  background-color: $clr3;
+  padding: 0px 7px;
+  margin-right: 15px;
+}

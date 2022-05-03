@@ -1,21 +1,26 @@
 <template>
     <div class="product-list-container">
         <h1>
-            products list:
+            Products List:
         </h1>
+
+      <addProduct/>
+
+
         <marker-card
           v-for="(product, i) in products"
           :key="i"
           :product="product"
           :title="product.description? product.description.substring(0,80) +'... Click to read more!!': ''"
           class="product-preview-card"
-          @click.native="openDetails(product.productId)"
+          @click="openDetails(product.productId)"
         />
     </div>
 </template>
 
 <script>
 import markerCard from '@/components/markerCard.vue'
+import addProduct from '@/components/addProduct.vue'
 
 export default {
   name: "productList",
@@ -29,21 +34,21 @@ export default {
       products: [
           {
             productId:'1',
-            productName: 'car',
+            productName: 'Car',
             productPrice: '15',
             productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
             loaded: true,
           },
                 {
             productId:'2',
-            productName: 'book',
+            productName: 'Book',
             productPrice: '17',
             productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
             loaded: true,
           },
                 {
             productId:'3',
-            productName: 'laptop',
+            productName: 'Laptop',
             productPrice: '20',
             productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
             loaded: true,
@@ -95,6 +100,7 @@ export default {
   },
   components: {
     markerCard,
+    addProduct,
   }
 };
 </script>

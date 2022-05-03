@@ -8,12 +8,16 @@
 @import 'basics/helpers';
 @import 'basics/base';
 @import 'basics/layout';
+@import 'basics/colors';
 
 // // PAGES
 
 
 // // COMPONENTS
 @import 'pages/Product';
+@import 'pages/markerCard';
+@import 'pages/ProductsList';
+@import 'pages/_addProduct';
 
 
 // // ANIMATIONS
