@@ -13,7 +13,7 @@ html {
     scroll-behavior: smooth;
     // font-size: $html-font-size;
     color: $clr1;
-    padding: 10px;
+    padding: 15px;
     font-family: OpenSans, sans-serif;
     // line-height: 1.9;
 }
@@ -24,10 +24,9 @@ body {
 }
 
 
-h1,
+h1
  {
     font-family: secondFont;
-    text-transform: uppercase;
 }
 
 a {
