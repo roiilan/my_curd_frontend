@@ -2,6 +2,7 @@
   <div class="product-container">
         <div v-if="loaded">	   
             <div class="card">
+              <form v-on:submit.prevent="onSubmit">
 
                 <div class="card_filed">
                    <h3> Product ID: </h3>
@@ -36,9 +37,13 @@
                       required
                     />
                     <p v-else> ${{productPrice}} </p>
-
                 </div>
 
+              <div v-if="isEdit" type="submit" class="add-btn" @click="addProduct">
+                  Add
+              </div>
+
+              </form>
             </div>
         </div>
 
@@ -71,7 +76,14 @@ export default {
         productDescription:'',
       },
 
-    }    
+    };
   },
+        methods: {
+        async addProduct() {
+          console.log("editProduct: ", this.editProduct.productId);
+          var res = await this.$store.dispatch({ type: "saveProduct", product: this.editProduct });
+          // console.log("res: ",res)
+      }
+    }, 
 }
 </script>

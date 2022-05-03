@@ -12,7 +12,14 @@
   cursor: pointer;
 }
 
+.add-product-btn span {
+  // margin-bottom: 7px;
+}
+
 .add-product-btn span:first-child{
   font-size: 3em; 
   margin-right:5px ;
+}
+.add-product-btn span:last-child{
+  font-weight: bold;
 }

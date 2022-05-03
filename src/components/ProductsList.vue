@@ -8,7 +8,7 @@
 
 
         <marker-card
-          v-for="(product, i) in products"
+          v-for="(product, i) in currProducts"
           :key="i"
           :product="product"
           :title="product.description? product.description.substring(0,80) +'... Click to read more!!': ''"
@@ -27,33 +27,6 @@ export default {
   data() {
     return {
       isOpen: true,
-      initialVal: null,
-      limit: 0,
-      skip: 0,
-      unitScrollY: null,
-      products: [
-          {
-            productId:'1',
-            productName: 'Car',
-            productPrice: '15',
-            productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
-            loaded: true,
-          },
-                {
-            productId:'2',
-            productName: 'Book',
-            productPrice: '17',
-            productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
-            loaded: true,
-          },
-                {
-            productId:'3',
-            productName: 'Laptop',
-            productPrice: '20',
-            productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
-            loaded: true,
-          },
-      ]
     };
   },
   computed: {
@@ -84,19 +57,19 @@ export default {
       this.isOpen = true;
     },
 
-    // async loadProducts() {
-    //   const products = await this.$store.dispatch({
-    //     type: "loadProducts",
-    //     limit: this.limit,
-    //     skip: this.skip
-    //   });
+    async loadProducts() {
+      const products = await this.$store.dispatch({
+        type: "loadProducts",
+        // limit: this.limit,
+        // skip: this.skip
+      });
     //   if (products.length < this.limit) this.limit = 0;
-    // },
-    loadMoreProduct() {
-      this.skip++;
-      this.limit = 4;
-      this.loadProducts();
-    }
+    },
+    // loadMoreProduct() {
+    //   this.skip++;
+    //   this.limit = 4;
+    //   this.loadProducts();
+    // }
   },
   components: {
     markerCard,

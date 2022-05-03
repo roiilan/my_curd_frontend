@@ -3,7 +3,27 @@ import { productService } from '../services/product.service.js'
 export default {
     state: {
         products: [],
-        currProducts: [],
+        currProducts: [{
+            productId:'1',
+            productName: 'Car',
+            productPrice: '15',
+            productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
+            loaded: true,
+          },
+                {
+            productId:'2',
+            productName: 'Book',
+            productPrice: '17',
+            productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
+            loaded: true,
+          },
+                {
+            productId:'3',
+            productName: 'Laptop',
+            productPrice: '20',
+            productDescription:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, tenetur temporibus explicabo fugit, ipsa neque non eius porro quasi vero nulla aperiam voluptate. Voluptates, maxime! Doloribus et incidunt autem amet.',
+            loaded: true,
+          },],
         productsCount: null
         // currProduct: null
     },
@@ -42,11 +62,11 @@ export default {
             state.products.unshift(product)
         },
         updateProduct(state, { product }) {
-            const idx = state.products.findIndex(currProduct => currProduct._id === product._id)
+            const idx = state.products.findIndex(currProduct => currProduct.productId === product.productId)
             state.products.splice(idx, 1, product)
         },
         removeProduct(state, { productId }) {
-            const idx = state.products.findIndex(currProduct => currProduct._id === productId)
+            const idx = state.products.findIndex(currProduct => currProduct.productId === productId)
             state.products.splice(idx, 1)
         }
     },
@@ -82,16 +102,17 @@ export default {
             return msg
         },
         async saveProduct(context, { product }) {
-            const isEdit = !!product._id;
+            // console.log('saveProduct', product.productId)
+            const isEdit = !!product.productId;
             const savedProduct = await productService.save(product)
             context.commit({
                 type: (isEdit) ? 'updateProduct' : 'addProduct',
                 product: savedProduct
             })
-            if (!isEdit && savedProduct) {
-                await productService.changeProductsCount(1)
-                context.dispatch({ type: 'loadProductsCount'})
-            }
+            // if (!isEdit && savedProduct) {
+            //     await productService.changeProductsCount(1)
+            //     context.dispatch({ type: 'loadProductsCount'})
+            // }
             return savedProduct
         },
         async getFilteredProductHeader(context, { filter }) {

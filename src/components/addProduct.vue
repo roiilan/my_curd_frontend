@@ -4,16 +4,18 @@
     <div class="card">
 
       <div class="card-header">
-        <div class="add-product-btn">
-          <span> + </span>
+        <div class="add-product-btn" @click="toggleAdd">
+          <span v-if="isAddMode"> - </span>
+          <span v-else> + </span>
           <span> Add product </span>
         </div>
       </div>
 
-
-      <product
-        :isEdit="true"
-      />
+    <div v-if="isAddMode" class="product-form-container">
+          <product
+            :isEdit="true"
+          />
+    </div>
 
 
       <!-- <div class="card-body">
@@ -67,13 +69,14 @@ export default {
   name: "Products",
   data() {
     return {
+      isAddMode: false,
       editId: "",
-      productData: {
-        id: "",
-        product_id: "",
-        product_name: "",
-        product_price: "",
-      },
+      // productData: {
+      //   id: "",
+      //   product_id: "",
+      //   product_name: "",
+      //   product_price: "",
+      // },
       editProductData: {
         id: "",
         product_id: "",
@@ -117,6 +120,9 @@ export default {
     //     this.products = products
     //   })
     // },
+    toggleAdd() {
+      this.isAddMode = !this.isAddMode;
+    },
     getProducts() {
       window.scrollTo(0, 0);
       // this.toggleLoading()
