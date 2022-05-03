@@ -4,27 +4,27 @@
             <div class="card">
               <form v-on:submit.prevent="onSubmit">
 
-                <div class="card_filed">
+                <!-- <div class="card_filed">
                    <h3> Product ID: </h3>
                     <input
                       v-if="isEdit"
-                      v-model="editProduct.productId"
+                      v-model="currProduct.productId"
                       type="text"
                       required
                     />
-                    <p v-else> {{productId}} </p>
+                    <p v-else> {{currProduct.productId}} </p>
 
-                </div>
+                </div> -->
 
                 <div class="card_filed">
                    <h3> Product Name: </h3>
                     <input
                       v-if="isEdit"
-                      v-model="editProduct.productName"
+                      v-model="currProduct.productName"
                       type="text"
                       required
                     />
-                    <p v-else> {{productName}} </p>
+                    <p v-else> {{currProduct.productName}} </p>
 
                 </div>
 
@@ -32,14 +32,14 @@
                    <h3> Product Price: </h3> 
                     <input
                       v-if="isEdit"
-                      v-model="editProduct.productPrice"
+                      v-model="currProduct.productPrice"
                       type="text"
                       required
                     />
-                    <p v-else> ${{productPrice}} </p>
+                    <p v-else> ${{currProduct.productPrice}} </p>
                 </div>
 
-              <div v-if="isEdit" type="submit" class="add-btn" @click="addProduct">
+              <div v-if="isEdit" type="submit" class="add-btn" @click="saveProduct">
                   Add
               </div>
 
@@ -54,6 +54,9 @@
 </template>
 
 <script>
+import { productService } from "../services/product.service.js";
+
+
 export default {
   name: 'Product',
   props: {
@@ -69,21 +72,29 @@ export default {
       loaded: true,
       // isEdit: false,
 
-      editProduct: {
-        productId:'',
-        productName: '',
-        productPrice: '',
-        productDescription:'',
-      },
+      currProduct: null,
 
     };
   },
+    async created() { 
+        const productId = this.$route.params.id;
+        if (productId) {
+          // this.currProduct = await this.$store.dispatch({
+          //   type: "loadProduct",
+          //   productId
+          // });
+
+        } else {
+            this.currProduct = productService.getEmptyProduct();
+
+            // this.isEdit = true;
+        }
+    },
         methods: {
-        async addProduct() {
-          console.log("editProduct: ", this.editProduct.productId);
-          var res = await this.$store.dispatch({ type: "saveProduct", product: this.editProduct });
-          // console.log("res: ",res)
-      }
+        async saveProduct() {
+          var res = await this.$store.dispatch({ type: "saveProduct", product: this.currProduct });
+           
+      },
     }, 
 }
 </script>

@@ -82,25 +82,9 @@ function _update(product) {
 function getEmptyProduct() {
 
     return {
-        organization: '',
-        title: '',
-        category: '',
-        description: '',
-        createdBy: {},
-        membersNeeded: 1,
-        membersApplyed: [],
-        date: [],
-        startAt: '',
-        endsAt: '',
-        imgUrls: [],
-        position: { txtAddress: '', lat: 33.886917, lng: 9.537499 },
-        requirements: {
-            minAge: 14,
-            languages: ['English'],
-            otherSkills: [],
-        },
-        tags: [],
-        rate: {average: null, length: 0}
+        productName: '',
+        productPrice: '',
+        productDescription:'',
     }
 }
 

@@ -59,9 +59,14 @@ export default {
             state.currProduct = product
         },
         addProduct(state, { product }) {
+            product.productId= Math.floor(Math.random() * 999999999),
+            console.log(product)
             state.products.unshift(product)
+            state.currProducts.unshift(product)
         },
         updateProduct(state, { product }) {
+            console.log('update')
+
             const idx = state.products.findIndex(currProduct => currProduct.productId === product.productId)
             state.products.splice(idx, 1, product)
         },
@@ -79,19 +84,23 @@ export default {
         },
         async loadProducts(context, { filterBy, limit, skip }) {
             const products = await productService.query(filterBy, limit, skip)
-            if (skip > 0) {
-                context.commit({ type: 'pushToCurrProducts', products })            
-            }
-            else if (limit || filterBy) {
-                context.commit({ type: 'setCurrProducts', products })            
-            }
-            else context.commit({ type: 'setProducts', products })
+
+            context.commit({ type: 'pushToCurrProducts', products })            
+
+            // if (skip > 0) {
+            //     context.commit({ type: 'pushToCurrProducts', products })            
+            // }
+            // else if (limit || filterBy) {
+            //     context.commit({ type: 'setCurrProducts', products })            
+            // }
+            // else context.commit({ type: 'setProducts', products })
             return products
         },
 
         async loadProduct(context, { productId }) {
             const product = await productService.getById(productId)
             // context.commit({type: 'setProduct', product})
+            
             return product
         },
         async removeProduct(context, { productId }) {
@@ -104,16 +113,17 @@ export default {
         async saveProduct(context, { product }) {
             // console.log('saveProduct', product.productId)
             const isEdit = !!product.productId;
-            const savedProduct = await productService.save(product)
+            // const savedProduct = await productService.save(product)
             context.commit({
                 type: (isEdit) ? 'updateProduct' : 'addProduct',
-                product: savedProduct
+                product: product
+                // product: savedProduct
             })
             // if (!isEdit && savedProduct) {
             //     await productService.changeProductsCount(1)
             //     context.dispatch({ type: 'loadProductsCount'})
             // }
-            return savedProduct
+            // return savedProduct
         },
         async getFilteredProductHeader(context, { filter }) {
             const filteredProductsHeader = await productService.getHeaderObj(filter)
